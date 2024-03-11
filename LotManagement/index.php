@@ -78,11 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <thead>
                 <tr class="bg-primary" style="color: white;">
                     <th>Lot Number</th>
+                    <th>Application Number</th>
                     <th>Date Filed</th>
                     <th>Applicant Name</th>
+                    <th>Area</th>
                     <th>Location</th>
+                    <th>Approved Date</th>
                     <th>Remarks</th>
-                    <th>History</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -96,19 +98,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <?php echo $row["lot_number"] ?>
                             </td>
                             <th>
+                                <?php echo $row["application_number"] ?>
+                            </th>
+                            <th>
                                 <?php echo $row["date_filed"] ?>
                             </th>
                             <th>
                                 <?php echo $row["applicant_name"] ?>
                             </th>
                             <th>
+                                <?php echo $row["area"] ?>
+                            </th>
+                            <th>
                                 <?php echo $row["location"] ?>
                             </th>
                             <th>
-                                <?php echo $row["remarks"] ?>
+                                <?php echo $row["approved_date"] ?>
                             </th>
                             <th>
-                                <!-- Display in Column Named History -->
+                                <!-- Display in Column Named Status -->
                                 <?php if ($row['status'] == 0) { ?>
                                     <!-- if the status is 0, the button will change to color BLUE -->
                                     <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>VIEW</button>
@@ -171,6 +179,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="number" class="form-control" name="lot_number" id="">
                         </div>
                         <div class="form-group">
+                            <label for="">Application Number *</label>
+                            <input type="number" class="form-control" name="application_number" id="">
+                        </div>
+                        <div class="form-group">
                             <label for="">Date Filed *</label>
                             <input type="date" class="form-control" name="date_filed" id="">
                         </div>
@@ -179,8 +191,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="text" class="form-control" name="applicant_name" id="">
                         </div>
                         <div class="form-group">
+                            <label for="">Area *</label>
+                            <input type="text" class="form-control" name="area" id="">
+                        </div>
+                        <div class="form-group">
                             <label for="">Location *</label>
                             <input type="text" class="form-control" name="location" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Approved Date *</label>
+                            <input type="date" class="form-control" name="approved_date" id="">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Remarks *</label>

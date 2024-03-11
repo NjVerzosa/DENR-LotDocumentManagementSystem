@@ -14,7 +14,7 @@ $subdivided_titles_sql = "SELECT *
                           FROM subdivided_titles
                           WHERE land_title_id = $specific_id
                           AND subdivided_to IS NULL
-                          ORDER BY position";
+                          ORDER BY remarks";
 $subdivided_titles_result = $conn->query($subdivided_titles_sql);
 
 ?>

@@ -8,21 +8,22 @@ if (!isset($_SESSION['csrf_token'])) {
 
 if (isset($_POST['submit'])) {
     $lot_number = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['lot_number'])));
+    $application_number = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['application_number'])));
     $date_filed = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['date_filed'])));
     $applicant_name = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['applicant_name'])));
+    $area = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['area'])));
     $location = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['location'])));
     $remarks = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['remarks'])));
-    $position = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['position'])));
     $status = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['status'])));
-
 
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         header("Location: index.php?error=CSRF token validation failed");
         exit();
     }
 
-    $stmt_update = mysqli_prepare($conn, "UPDATE land_titles SET date_filed=?, applicant_name=?, location=?, remarks=?, position=?, status=? WHERE lot_number=?");
-    mysqli_stmt_bind_param($stmt_update, "ssssssi", $date_filed, $applicant_name, $location, $remarks, $position, $status, $lot_number);
+    $stmt_update = mysqli_prepare($conn, "UPDATE land_titles SET application_number=?, date_filed=?, applicant_name=?, area=?, location=?, remarks=?, status=? WHERE lot_number=?");
+
+    mysqli_stmt_bind_param($stmt_update, "sssssssi", $application_number, $date_filed, $applicant_name, $area, $location, $remarks, $status, $lot_number);
 
     if (mysqli_stmt_execute($stmt_update)) {
         header('location: index.php');
@@ -31,10 +32,8 @@ if (isset($_POST['submit'])) {
         header('location: edit-lot.php?lot_number=' . $lot_number);
         exit();
     }
-
-
-
 }
+
 if (isset($_GET['applicant_name'])) {
     $applicant_name = $_GET['applicant_name'];
     $query = "SELECT * FROM land_titles WHERE applicant_name = ?";
@@ -46,6 +45,7 @@ if (isset($_GET['applicant_name'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         ?>
+
 
         <!DOCTYPE html>
         <html lang="en">
@@ -93,14 +93,21 @@ if (isset($_GET['applicant_name'])) {
                                 <label for="lotNumber" class="col-sm-3 col-form-label">Lot Number:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" value="<?php echo $row['lot_number']; ?>"
-                                        name="lot_number" readonly>
+                                        name="lot_number">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-3 col-form-label">Applicant #:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="<?php echo $row['application_number']; ?>"
+                                        name="application_number">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="dateFiled" class="col-sm-3 col-form-label">Date Filed:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" value="<?php echo $row['date_filed']; ?>"
-                                        name="date_filed" readonly>
+                                        name="date_filed">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -111,24 +118,30 @@ if (isset($_GET['applicant_name'])) {
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="location" class="col-sm-3 col-form-label">Area:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="<?php echo $row['area']; ?>" name="area">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="location" class="col-sm-3 col-form-label">Location:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" value="<?php echo $row['location']; ?>"
-                                        name="location" readonly>
+                                        name="location">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="remarks" class="col-sm-3 col-form-label">Remarks:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="<?php echo $row['remarks']; ?>"
+                                        name="remarks">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="location" class="col-sm-3 col-form-label">Status:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" value="<?php echo $row['status']; ?>"
-                                        name="status">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="location" class="col-sm-3 col-form-label">Remakrs:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" value="<?php echo $row['remarks']; ?>"
-                                        name="remarks">
+                                    <input type="text" class="form-control" value="<?php echo $row['status']; ?>" name="status">
                                 </div>
                             </div>
 
