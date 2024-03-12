@@ -74,6 +74,8 @@ if (isset($_GET['applicant_name'])) {
                                 <label for="dateFiled" class="col-sm-3 col-form-label">Date Filed:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" value="<?php echo $row['date_filed']; ?>"
+                                        name="date_filed" readonly>
+                                    <input type="date" class="form-control" value="<?php echo $row['date_filed']; ?>"
                                         name="date_filed">
                                 </div>
                             </div>
@@ -109,6 +111,8 @@ if (isset($_GET['applicant_name'])) {
                                 <label for="remarks" class="col-sm-3 col-form-label">Approved Date:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" value="<?php echo $row['approved_date']; ?>"
+                                        name="approved_date" readonly>
+                                    <input type="date" class="form-control" value="<?php echo $row['approved_date']; ?>"
                                         name="approved_date">
                                 </div>
                             </div>
