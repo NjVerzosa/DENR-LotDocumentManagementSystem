@@ -79,7 +79,11 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
                         <p>Remarks:
                             <?php echo $land_title_row["remarks"]; ?>
                         </p>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#gearModal"
+                        <button class="btn btn-success open-modal" data-toggle="modal" data-target="#gearModal"
+                            data-user_id="<?php echo $land_title_row["id"]; ?>"
+                            data-date="<?php echo $land_title_row["date_filed"]; ?>"
+                            data-applicant-name="<?php echo $land_title_row["applicant_name"]; ?>"
+                            data-remarks="<?php echo $land_title_row["remarks"]; ?>"
                             style="margin-left:65%;padding:1px;width:30%;">ADD</button>
                     </div>
                 </div>
@@ -160,14 +164,20 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="add_subdivider.php" method="POST">
                     <div class="form-group">
-                        <label for="lotNumber">Date Filed:</label>
-                        <input type="date" class="form-control" id="lotNumber" name="date_filed" required>
+                        <input type="hidden" class="form-control" id="userId" name="id" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="lotNumber">Applicant Name:</label>
-                        <input type="" class="form-control" id="lotNumber" name="applicant_name" required>
+                        <label for="">Date Filed:</label>
+                        <input type="date" class="form-control" name="date_filed" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="applicantName" name="applicant_name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Applicant Name:</label>
+                        <input type="text" class="form-control" name="applicant_name" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Remarks *</label>
@@ -176,18 +186,35 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
                             <option value="Titled">Titled</option>
                         </select>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="submit">ADD SUBDIVIDER</button>
+                        <button type="submit" class="btn btn-primary" name="submit">ADD</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // JavaScript to handle modal opening and data population
+    $(document).ready(function () {
+        // Event listener for the click on the "ADD" button
+        $('.open-modal').click(function () {
+            // Get the data attributes from the button
+            var userId = $(this).data('user_id');
+            var dateFiled = $(this).data('date');
+            var applicantName = $(this).data('applicant-name');
+
+            // Populate the modal with the fetched data
+            $('#userId').val(userId);
+            $('#dateFiled').val(dateFiled);
+            $('#applicantName').val(applicantName);
+            // Show the modal
+            $('#gearModal').modal('show');
+        });
+    });
+</script>
 
 </html>
