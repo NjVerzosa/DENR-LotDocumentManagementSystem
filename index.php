@@ -119,40 +119,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <!-- Display in Column Named Status -->
                                 <?php if ($row['status'] == 0) { ?>
                                     <!-- if the status is 0, the button will change to color BLUE -->
-                                    <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>VIEW</button>
+                                    <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>UNTITLED</button>
                                 <?php } elseif ($row['status'] == 1) { ?>
                                     <!-- if the status is 1, the button will change to color YELLOW -->
                                     <a href="records.php?id=<?php echo $row["id"] ?>"><button
-                                            class="btn btn-success">VIEW</button></a>
-                                <?php } elseif ($row['status'] == 3) { ?>
-                                    <!-- if the status is 3, the button will change to color YELLOW -->
-                                    <a href="records.php?id=<?php echo $row["id"] ?>"><button
-                                            class="btn btn-success">VIEW</button></a>
+                                            class="btn btn-success">PROCEED</button></a>
                                 <?php } ?>
                             </th>
                             <th>
+                                <a href="edit.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
+                                        class="btn btn-primary"
+                                        onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
+                            <?php } ?>
 
-                                <!-- Will take Actions  -->
-                                <?php if (strtolower($row['remarks']) == "untitled") { ?>
-                                    <a href="subdivide.php?id=<?php echo $row["id"] ?>"><button class="btn btn-primary"
-                                            onclick='return confirm("You want add Subdivider?")'>SUBDIVIDE</button></a>
-                                    <a href="edit.php?id=<?php echo $row["id"] ?>"><button
-                                            class="btn btn-primary" accesskey="c"
-                                            onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
+                        </th>
+                    </tr>
+                    <?php
 
-                                    <!-- <button class="btn btn-danger" onclick='return confirm("No subdivider yet")'>DELETE</button> -->
-                                <?php } elseif ($row['remarks'] == "Titled") { ?>
-                                    <a href=""><button class="btn btn-primary"
-                                            onclick='return confirm("Not available for subdivision")'>SUBDIVIDE</button></a>
-                                    <a href="edit.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
-                                            class="btn btn-primary"
-                                            onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
-                                <?php } ?>
-
-                            </th>
-                        </tr>
-                        <?php
-                    }
                 } else {
                     echo "<tr><td colspan='8'>No results found.</td></tr>";
                 }
