@@ -6,8 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];
     $date_filed = $_POST["date_filed"];
     $applicant_name = $_POST["applicant_name"];
-    $remarks = "untitled";
-
+    $remarks = "Untitled";
 
     // Insert the new subdivided record into subdivided_titles table
     $insert_sql = "INSERT INTO subdivided_titles (lot_number, date_filed, applicant_name, location, remarks, land_title_id)
