@@ -118,9 +118,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th> 
                                 <!-- 0 is to proceed -->
                                 <!-- 1 is to proceed means, got subdivider -->
-                                <?php if ($row['status'] == 0) { ?>
-                                    <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>UNTITLED</button>
-                                <?php } elseif ($row['status'] == 1) { ?>
+                                <?php if ($row['remarks'] == "Titled") { ?>
+                                    <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>TITLED</button>
+                                <?php } elseif ($row['remarks'] == "Untitled") { ?>
                                     <a href="records.php?id=<?php echo $row["id"] ?>"><button
                                             class="btn btn-success">PROCEED</button></a>
                                 <?php } ?>
@@ -128,8 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th>
                                 <!-- Default actions to edit data incase of incorrect inputs by user -->
                                 <a href="edit.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
-                                        class="btn btn-primary"
-                                        onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
+                                        class="btn btn-primary" >EDIT</button></a>
                             <?php } ?>
 
                         </th>
@@ -190,6 +189,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <select class="form-control" name="remarks" id="">
                                 <option value="Untitled">Untitled</option>
                                 <option value="Titled">Titled</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Status *</label>
+                            <select class="form-control" name="status" id="">
+                                <option value="0">0 for Titled</option>
+                                <option value="1">1 for Subdivided</option>
+                                <option value="3">3 for Untitled and No Subdivider</option>
                             </select>
                         </div>
 

@@ -97,7 +97,6 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
                     <th>Date Filed</th>
                     <th>Location</th>
                     <th>Remarks</th>
-                    <th>History</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -119,37 +118,26 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
                             <td>
                                 <?php echo $row["location"]; ?>
                             </td>
-                            <td>
-                                <?php echo $row["remarks"]; ?>
-                            </td>
-                            <td>
-                                <?php if ($row['status'] == 0) { ?>
-                                    <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>VIEW</button>
-                                <?php } elseif ($row['code'] == 1) { ?>
-                                    <button class="btn btn-success"><a href="edit.php">VIEW</a></button>
-                                <?php } ?>
-                            </td>
                             <th>
-
-                                <!-- Will take Actions  -->
-                                <?php if ($row['remarks'] == "Untitled") { ?>
-                                    <a href=""><button class="btn btn-primary"
-                                            onclick='return confirm("You want add Subdivider?")'>SUBDIVIDE</button></a>
-                                    <a href=""><button class="btn btn-primary"
-                                            onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
-
-                                    <!-- <button class="btn btn-danger" onclick='return confirm("No subdivider yet")'>DELETE</button> -->
-                                <?php } elseif ($row['remarks'] == "Titled") { ?>
-                                    <a href=""><button class="btn btn-primary"
-                                            onclick='return confirm("Not available for subdivision")'>SUBDIVIDE</button></a>
-                                    <a href=""><button class="btn btn-primary"
-                                            onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
+                                <!-- 0 is to proceed -->
+                                <!-- 1 is to proceed means, got subdivider -->
+                                <?php if ($row['status'] == 0) { ?>
+                                    <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>Untitled</button>
+                                <?php } elseif ($row['status'] == 1) { ?>
+                                    <a href="records.php?id=<?php echo $row["id"] ?>"><button
+                                            class="btn btn-success">Proceed</button></a>
                                 <?php } ?>
-
                             </th>
-                        </tr>
-                        <?php
-                    }
+                            <th>
+                                <!-- Default actions to edit data incase of incorrect inputs by user -->
+                                <a href="edit-subdivider.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
+                                        class="btn btn-primary">Edit</button></a>
+                            <?php } ?>
+
+                        </th>
+                    </tr>
+                    <?php
+
                 } else {
                     echo "<tr><td colspan='5'>No subdivided titles found.</td></tr>";
                 }

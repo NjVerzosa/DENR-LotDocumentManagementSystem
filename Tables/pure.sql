@@ -8,7 +8,7 @@ CREATE TABLE `land_titles` (
   `location` VARCHAR(255),
   `remarks` VARCHAR(255),
   `approved_date` DATE,
-  `status` VARCHAR(5) NOT NULL DEFAULT '0'
+  `status` VARCHAR(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -23,7 +23,7 @@ CREATE TABLE `subdivided_titles` (
   `location` VARCHAR(255),
   `approved_date` DATE,
   `remarks` VARCHAR(255),
-  `status` VARCHAR(5) NOT NULL DEFAULT '0',
+  `status` VARCHAR(5) NOT NULL,
   `subdivided_to` VARCHAR(10),
   FOREIGN KEY (`land_title_id`) REFERENCES `land_titles`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

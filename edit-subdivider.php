@@ -4,7 +4,7 @@ include 'config.php';
 
 if (isset($_GET['applicant_name'])) {
     $applicant_name = $_GET['applicant_name'];
-    $query = "SELECT * FROM land_titles WHERE applicant_name = ?";
+    $query = "SELECT * FROM subdivided_titles WHERE applicant_name = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $applicant_name);
     mysqli_stmt_execute($stmt);
@@ -120,7 +120,7 @@ if (isset($_GET['applicant_name'])) {
                             </div>
 
 
-                            <button type="submit" name="update_main" class="btn btn-primary">Update</button>
+                            <button type="submit" name="update_sub" class="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>
