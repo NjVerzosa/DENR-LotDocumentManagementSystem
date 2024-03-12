@@ -2,9 +2,6 @@
 session_start();
 include 'config.php';
 
-/*
-For Main
- */ 
 if (isset($_POST['update_main'])) {
     $id = $_POST['id'];
     $lot_number = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['lot_number'])));
