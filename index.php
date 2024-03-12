@@ -115,18 +115,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th>
                                 <?php echo $row["approved_date"] ?>
                             </th>
-                            <th>
-                                <!-- Display in Column Named Status -->
+                            <th> 
+                                <!-- 0 is to proceed -->
+                                <!-- 1 is to proceed means, got subdivider -->
                                 <?php if ($row['status'] == 0) { ?>
-                                    <!-- if the status is 0, the button will change to color BLUE -->
                                     <button class="btn btn-primary" onclick='return confirm("No subdivider yet")'>UNTITLED</button>
                                 <?php } elseif ($row['status'] == 1) { ?>
-                                    <!-- if the status is 1, the button will change to color YELLOW -->
                                     <a href="records.php?id=<?php echo $row["id"] ?>"><button
                                             class="btn btn-success">PROCEED</button></a>
                                 <?php } ?>
                             </th>
                             <th>
+                                <!-- Default actions to edit data incase of incorrect inputs by user -->
                                 <a href="edit.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
                                         class="btn btn-primary"
                                         onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
