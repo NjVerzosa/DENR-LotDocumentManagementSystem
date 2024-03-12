@@ -79,7 +79,8 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
                         <p>Remarks:
                             <?php echo $land_title_row["remarks"]; ?>
                         </p>
-                        <button class="btn btn-success" style="margin-left:65%;padding:1px;width:30%;">ADD</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#gearModal"
+                            style="margin-left:65%;padding:1px;width:30%;">ADD</button>
                     </div>
                 </div>
             </div>
@@ -159,5 +160,46 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
 
 
 </body>
+<!-- Adding a subdiveder to subdiveder -->
+<!-- back-end -->
+<div class="modal fade" id="gearModal" tabindex="-1" role="dialog" aria-labelledby="gearModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gearModalLabel">Add LOT</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="lotNumber">Date Filed:</label>
+                        <input type="date" class="form-control" id="lotNumber" name="date_filed" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lotNumber">Applicant Name:</label>
+                        <input type="" class="form-control" id="lotNumber" name="applicant_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Remarks *</label>
+                        <select class="form-control" name="remarks" id="">
+                            <option value="Untitled">Untitled</option>
+                            <option value="Titled">Titled</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="submit">ADD SUBDIVIDER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </html>
