@@ -6,27 +6,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST["id"];
     $date_filed = $_POST["date_filed"];
     $applicant_name = $_POST["applicant_name"];
-    $remarks = $_POST["remarks"];
-
-    // Check if there is a record in subdivided_titles with the same land_title_id
-    $check_sql = "SELECT position FROM subdivided_titles WHERE land_title_id = $id";
-    $check_result = mysqli_query($conn, $check_sql);
-
-    if (mysqli_num_rows($check_result) > 0) {
-        // If a record exists, use the position from the subdivided_titles table
-        $check_row = mysqli_fetch_assoc($check_result);
-        $new_position = $check_row["position"] + 1;
-    } else {
-        // If no record exists, use the position from the land_titles table
-        $get_position_sql = "SELECT position FROM land_titles WHERE id = $id";
-        $get_position_result = mysqli_query($conn, $get_position_sql);
-        $get_position_row = mysqli_fetch_assoc($get_position_result);
-        $new_position = intval($get_position_row["position"]) + 1;
-    }
+    $remarks = "Untitled";
 
     // Insert the new subdivided record into subdivided_titles table
-    $insert_sql = "INSERT INTO subdivided_titles (lot_number, date_filed, applicant_name, location, remarks, position, land_title_id)
-            SELECT lot_number, '$date_filed', '$applicant_name', location, '$remarks', $new_position, $id
+    $insert_sql = "INSERT INTO subdivided_titles (lot_number, date_filed, applicant_name, location, remarks, land_title_id)
+            SELECT lot_number, '$date_filed', '$applicant_name', location, '$remarks', $id
             FROM land_titles
             WHERE id = $id";
 
