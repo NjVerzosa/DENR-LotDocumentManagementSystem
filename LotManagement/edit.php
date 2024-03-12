@@ -2,50 +2,17 @@
 session_start();
 include 'config.php';
 
-if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "SELECT * FROM land_titles WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-if (isset($_POST['submit'])) {
-    $lot_number = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['lot_number'])));
-    $application_number = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['application_number'])));
-    $date_filed = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['date_filed'])));
-    $applicant_name = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['applicant_name'])));
-    $area = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['area'])));
-    $location = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['location'])));
-    $remarks = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['remarks'])));
-    $status = htmlspecialchars(mysqli_real_escape_string($conn, trim($_POST['status'])));
-
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        header("Location: index.php?error=CSRF token validation failed");
-        exit();
-    }
-
-    $stmt_update = mysqli_prepare($conn, "UPDATE land_titles SET application_number=?, date_filed=?, applicant_name=?, area=?, location=?, remarks=?, status=? WHERE lot_number=?");
-
-    mysqli_stmt_bind_param($stmt_update, "sssssssi", $application_number, $date_filed, $applicant_name, $area, $location, $remarks, $status, $lot_number);
-
-    if (mysqli_stmt_execute($stmt_update)) {
-        header('location: index.php');
-        exit();
-    } else {
-        header('location: edit-lot.php?lot_number=' . $lot_number);
-        exit();
-    }
-}
-
-if (isset($_GET['applicant_name'])) {
-    $applicant_name = $_GET['applicant_name'];
-    $query = "SELECT * FROM land_titles WHERE applicant_name = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $applicant_name);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
         ?>
-
 
         <!DOCTYPE html>
         <html lang="en">
@@ -86,7 +53,7 @@ if (isset($_GET['applicant_name'])) {
                         <h5 class="card-title">Edit
                             <?php echo $row['applicant_name']; ?>
                         </h5>
-                        <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+                        <form method="POST" action="update.php">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 
                             <div class="form-group row">
@@ -139,14 +106,19 @@ if (isset($_GET['applicant_name'])) {
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="remarks" class="col-sm-3 col-form-label">Approved Date:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="<?php echo $row['approved_date']; ?>"
+                                        name="approved_date">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="location" class="col-sm-3 col-form-label">Status:</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" value="<?php echo $row['status']; ?>" name="status">
                                 </div>
                             </div>
 
-
-                            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
                             <button type="submit" name="submit" class="btn btn-primary">Update</button>
                         </form>

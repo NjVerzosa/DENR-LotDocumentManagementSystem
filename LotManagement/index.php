@@ -133,11 +133,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th>
 
                                 <!-- Will take Actions  -->
-                                <?php if ($row['remarks'] == "Untitled") { ?>
+                                <?php if (strtolower($row['remarks']) == "untitled") { ?>
                                     <a href="subdivide.php?id=<?php echo $row["id"] ?>"><button class="btn btn-primary"
                                             onclick='return confirm("You want add Subdivider?")'>SUBDIVIDE</button></a>
-                                    <a href="edit.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
-                                            class="btn btn-primary"
+                                    <a href="edit.php?id=<?php echo $row["id"] ?>"><button
+                                            class="btn btn-primary" accesskey="c"
                                             onclick='return confirm("You want to edit this Lot?")'>EDIT</button></a>
 
                                     <!-- <button class="btn btn-danger" onclick='return confirm("No subdivider yet")'>DELETE</button> -->
