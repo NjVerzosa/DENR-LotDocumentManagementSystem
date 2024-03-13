@@ -1,12 +1,13 @@
 <?php
 include "config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['search'])) {
     $search = $_POST['search'];
 
     // Search Logic
-    $sql = "SELECT * FROM land_titles WHERE location = '$search'";
+    $sql = "SELECT * FROM land_titles WHERE lot_number = '$search' ";
     $result = mysqli_query($conn, $sql);
+
 } else {
     // Select all records
     $sql = "SELECT * FROM land_titles";
@@ -76,34 +77,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
     <div class="search_update">
         <div class="container mt-5 pt-1">
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <select name="search" class="dropdown">
-                    <option value="">Select Location</option>
-                    <?php
-                    $sql = "SELECT location FROM land_titles";
-                    $result_dropdown = mysqli_query($conn, $sql);
-
-                    if ($result_dropdown && mysqli_num_rows($result_dropdown) > 0) {
-                        while ($row = mysqli_fetch_assoc($result_dropdown)) {
-                            $selected = ($_POST['search'] == $row["location"]) ? 'selected' : '';
-                            echo "<option value='" . $row["location"] . "' $selected>" . $row["location"] . "</option>";
-                        }
-                    }
-                    ?>
-                </select>
-
-
-
+            <form method="POST" action="">
+                <input type="text" name="search" placeholder="Enter Lot Number">
                 <button type="submit" class="btn btn-primary nav-link-btn">Search</button>
             </form>
         </div>
     </div>
+
     <div class="update_table">
         <table class='table'>
             <thead>
                 <tr class="bg-primary" style="color: white;">
-                    <th>Lot Number</th>
-                    <th>Application Number</th>
+                    <th>Lot #</th>
+                    <th>Application #</th>
                     <th>Date Filed</th>
                     <th>Applicant Name</th>
                     <th>Area</th>
