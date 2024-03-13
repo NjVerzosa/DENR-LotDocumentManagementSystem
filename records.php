@@ -25,7 +25,7 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DENR Lot Subdividers</title>
+    <title>DENR | SELECTED DATA</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="assets/style.css">
@@ -38,7 +38,7 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
         <!-- Navbar content goes here -->
         <div class="container" style="margin-left: 0px;">
             <img src="assets/logo.png" alt="Logo" class="header-logo">
-            <a class="navbar-brand" href="index.php"> DENR CENRO Record Tracer</a>
+            <a class="navbar-brand" href="index.php"> DENR CENRO Lot Management System</a>
             <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
@@ -56,23 +56,15 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
 
             <!-- Use inline CSS for hover state -->
             <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                onmouseout="this.style.color='#333'">Track File</span>
+                onmouseout="this.style.color='#333'">MAIN</span>
         </a>
 
-        <a class="nav-link" href="edit_box.php"
+        <a class="nav-link" href="" data-toggle="modal" data-target="#gearModal"
             style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
 
             <!-- Use inline CSS for hover state -->
             <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                onmouseout="this.style.color='#333'">Update Data</span>
-        </a>
-
-        <a class="nav-link" href="insert_box.php"
-            style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
-
-            <!-- Use inline CSS for hover state -->
-            <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                onmouseout="this.style.color='#333'">Add Box</span>
+                onmouseout="this.style.color='#333'">ADD DATA</span>
         </a>
 
     </div>
@@ -80,9 +72,14 @@ $subdivided_titles_result = $conn->query($subdivided_titles_sql);
     <div class="slide-bar slide-bar-right-middle">
         <img src="assets/arrow.png" alt="Logo" class="slide_bar_icon">
         <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-            onmouseout="this.style.color='#333'">system 2</span>
-        </a>
+            onmouseout="this.style.color='#333'" onclick="nav()">Track File</span>
     </div>
+    <script>
+        function nav() {
+            window.location.href = 'Tracker/index.php';
+        }
+    </script>
+
     <div class="col-12 col-md-3 d-flex" style="width:50%;margin-left:1%;">
         <div class="card flex-fill border-0">
             <div class="card-body py-4">

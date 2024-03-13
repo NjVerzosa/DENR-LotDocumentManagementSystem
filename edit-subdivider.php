@@ -20,7 +20,7 @@ if (isset($_GET['applicant_name'])) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>DENR Lots Doc</title>
+            <title>DENR | EDIT DATA</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <link rel="stylesheet" href="assets/style.css">
         </head>
@@ -32,7 +32,7 @@ if (isset($_GET['applicant_name'])) {
                 <!-- Navbar content goes here -->
                 <div class="container" style="margin-left: 0px;">
                     <img src="assets/logo.png" alt="Logo" class="header-logo">
-                    <a class="navbar-brand" href="index.php"> DENR CENRO Record Tracer</a>
+                    <a class="navbar-brand" href="index.php"> DENR CENRO Lot Management System</a>
                     <div class="navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
 
@@ -50,23 +50,15 @@ if (isset($_GET['applicant_name'])) {
 
                     <!-- Use inline CSS for hover state -->
                     <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                        onmouseout="this.style.color='#333'">Track File</span>
+                        onmouseout="this.style.color='#333'">MAIN</span>
                 </a>
 
-                <a class="nav-link" href="edit_box.php"
+                <a class="nav-link" href="" data-toggle="modal" data-target="#gearModal"
                     style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
 
                     <!-- Use inline CSS for hover state -->
                     <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                        onmouseout="this.style.color='#333'">Update Data</span>
-                </a>
-
-                <a class="nav-link" href="insert_box.php"
-                    style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
-
-                    <!-- Use inline CSS for hover state -->
-                    <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                        onmouseout="this.style.color='#333'">Add Box</span>
+                        onmouseout="this.style.color='#333'">ADD DATA</span>
                 </a>
 
             </div>
@@ -74,9 +66,14 @@ if (isset($_GET['applicant_name'])) {
             <div class="slide-bar slide-bar-right-middle">
                 <img src="assets/arrow.png" alt="Logo" class="slide_bar_icon">
                 <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                    onmouseout="this.style.color='#333'">system 2</span>
-                </a>
-            </div>XF
+                    onmouseout="this.style.color='#333'" onclick="nav()">Track File</span>
+            </div>
+            <script>
+                function nav() {
+                    window.location.href = 'Tracker/index.php';
+                }
+            </script>
+
             <!-- Card with Form -->
             <div class="container mt-4" style="width:50%;">
                 <div class="card">

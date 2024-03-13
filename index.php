@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DENR Lot Document</title>
+    <title>DENR | MAIN</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="assets/style.css">
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Navbar content goes here -->
         <div class="container" style="margin-left: 0px;">
             <img src="assets/logo.png" alt="Logo" class="header-logo">
-            <a class="navbar-brand" href="index.php"> DENR CENRO Record Tracer</a>
+            <a class="navbar-brand" href="index.php"> DENR CENRO Lot Management System</a>
             <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
 
@@ -51,15 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Use inline CSS for hover state -->
             <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                onmouseout="this.style.color='#333'">Track File</span>
-        </a>
-
-        <a class="nav-link" href="edit.php"
-            style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
-
-            <!-- Use inline CSS for hover state -->
-            <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                onmouseout="this.style.color='#333'">Update Data</span>
+                onmouseout="this.style.color='#333'">MAIN</span>
         </a>
 
         <a class="nav-link" href="" data-toggle="modal" data-target="#gearModal"
@@ -67,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Use inline CSS for hover state -->
             <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-                onmouseout="this.style.color='#333'">Add Box</span>
+                onmouseout="this.style.color='#333'">ADD DATA</span>
         </a>
 
     </div>
@@ -75,10 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="slide-bar slide-bar-right-middle">
         <img src="assets/arrow.png" alt="Logo" class="slide_bar_icon">
         <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
-            onmouseout="this.style.color='#333'">system 2</span>
-        </a>
+            onmouseout="this.style.color='#333'" onclick="nav()">Track File</span>
     </div>
-
+    <script>
+        function nav() {
+            window.location.href = 'Tracker/index.php';
+        }
+    </script>
     <div class="search_update">
         <div class="container mt-5 pt-1">
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
