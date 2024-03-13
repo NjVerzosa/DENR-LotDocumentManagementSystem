@@ -27,26 +27,57 @@ if (isset($_GET['applicant_name'])) {
 
         <body>
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark"
+                style="background: linear-gradient(to right, #0056b3, #007bff, #28a745); box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                <!-- Navbar content goes here -->
+                <div class="container" style="margin-left: 0px;">
                     <img src="assets/logo.png" alt="Logo" class="header-logo">
-                    <a class="navbar-brand" href="#"> DENR CENRO Lot Document Management System</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <a class="navbar-brand" href="index.php"> DENR CENRO Record Tracer</a>
+                    <div class="navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php">Main</a>
-                            </li>
+
                         </ul>
+
                     </div>
                 </div>
             </nav>
 
-            <!-- Card with Form -->
+
+            <div class="slide-bar">
+                <img src="assets/Hamburger-Button.png" alt="Logo" class="slide_bar_icon">
+                <a class="nav-link" href="index.php"
+                    style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
+
+                    <!-- Use inline CSS for hover state -->
+                    <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                        onmouseout="this.style.color='#333'">Track File</span>
+                </a>
+
+                <a class="nav-link" href="edit_box.php"
+                    style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
+
+                    <!-- Use inline CSS for hover state -->
+                    <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                        onmouseout="this.style.color='#333'">Update Data</span>
+                </a>
+
+                <a class="nav-link" href="insert_box.php"
+                    style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
+
+                    <!-- Use inline CSS for hover state -->
+                    <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                        onmouseout="this.style.color='#333'">Add Box</span>
+                </a>
+
+            </div>
+            <!-- Second slide bar -->
+            <div class="slide-bar slide-bar-right-middle">
+                <img src="assets/arrow.png" alt="Logo" class="slide_bar_icon">
+                <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                    onmouseout="this.style.color='#333'">system 2</span>
+                </a>
+            </div>
+             <!-- Card with Form -->
             <div class="container mt-4" style="width:50%;">
                 <div class="card">
                     <div class="card-body">

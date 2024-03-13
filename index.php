@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DENR Lots Doc</title>
+    <title>DENR Lot Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="assets/style.css">
@@ -28,26 +28,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark"
+        style="background: linear-gradient(to right, #0056b3, #007bff, #28a745); box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <!-- Navbar content goes here -->
+        <div class="container" style="margin-left: 0px;">
             <img src="assets/logo.png" alt="Logo" class="header-logo">
-
-            <a class="navbar-brand" href="#"> DENR CENRO Lot Document Management System</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="index.php"> DENR CENRO Record Tracer</a>
+            <div class="navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php" data-toggle="modal" data-target="#gearModal">Add Lot</a>
-                    </li>
 
                 </ul>
+
             </div>
         </div>
     </nav>
+
+
+    <div class="slide-bar">
+        <img src="assets/Hamburger-Button.png" alt="Logo" class="slide_bar_icon">
+        <a class="nav-link" href="index.php"
+            style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
+
+            <!-- Use inline CSS for hover state -->
+            <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                onmouseout="this.style.color='#333'">Track File</span>
+        </a>
+
+        <a class="nav-link" href="edit.php"
+            style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
+
+            <!-- Use inline CSS for hover state -->
+            <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                onmouseout="this.style.color='#333'">Update Data</span>
+        </a>
+
+        <a class="nav-link" href="" data-toggle="modal" data-target="#gearModal"
+            style="font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; color: #333; transition: color 0.3s ease;">
+
+            <!-- Use inline CSS for hover state -->
+            <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+                onmouseout="this.style.color='#333'">Add Box</span>
+        </a>
+
+    </div>
+    <!-- Second slide bar -->
+    <div class="slide-bar slide-bar-right-middle">
+        <img src="assets/arrow.png" alt="Logo" class="slide_bar_icon">
+        <span style="transition: color 0.3s ease;" onmouseover="this.style.color='#007bff'"
+            onmouseout="this.style.color='#333'">system 2</span>
+        </a>
+    </div>
 
     <div class="search_update">
         <div class="container mt-5 pt-1">
@@ -115,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th>
                                 <?php echo $row["approved_date"] ?>
                             </th>
-                            <th> 
+                            <th>
                                 <!-- 0 is to proceed -->
                                 <!-- 1 is to proceed means, got subdivider -->
                                 <?php if ($row['remarks'] == "Titled") { ?>
@@ -128,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <th>
                                 <!-- Default actions to edit data incase of incorrect inputs by user -->
                                 <a href="edit.php?applicant_name=<?php echo $row["applicant_name"] ?>"><button
-                                        class="btn btn-primary" >EDIT</button></a>
+                                        class="btn btn-primary">EDIT</button></a>
                             <?php } ?>
 
                         </th>
