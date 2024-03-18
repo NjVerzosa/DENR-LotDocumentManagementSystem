@@ -161,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
 
     </div>
+    
     <!-- Second slide bar -->
     <div class="slide-bar slide-bar-right-middle">
         <img src="assets/arrow.png" alt="Logo" class="slide_bar_icon">
